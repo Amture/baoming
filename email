@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>报名邮件跳转</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f5f7fb;
+        }
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0057ff;
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>📧 发送报名邮件</h2>
+    <p>收件人：<strong>Amturester@hotmail.com</strong></p>
+    <p>点击下方按钮或等待自动跳转</p>
+    <button id="mailBtn">✉️ 打开邮件客户端</button>
+    <div class="info">
+        如果浏览器没有自动打开，请手动点击按钮。
+    </div>
+</div>
+
+<script>
+    // 收件人、主题、正文（可自定义）
+    const recipient = "Amturester@hotmail.com";
+    const subject = encodeURIComponent("校赛报名/咨询");
+    const body = encodeURIComponent("请填写您的姓名、学号及参赛项目：\n\n");
+    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    // 弹窗并跳转的函数
+    function openMailWithConfirm() {
+        if (confirm("即将打开邮件客户端，向 Amturester@hotmail.com 发送邮件。\n\n如果未自动跳转，请确保设备已配置邮件应用。")) {
+            window.location.href = mailtoLink;
+        }
+    }
+
+    // 页面加载后自动弹窗（符合“扫码后弹出弹窗，自动跳转”）
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            openMailWithConfirm();
+        }, 300); // 延迟300毫秒，确保页面渲染完成
+    });
+
+    // 按钮备用
+    document.getElementById('mailBtn').addEventListener('click', openMailWithConfirm);
+</script>
+</body>
+</html>
