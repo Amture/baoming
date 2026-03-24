@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳转中...</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: system-ui;
+            padding: 2rem;
+            background: #f0f2f5;
+        }
+        .btn {
+            display: inline-block;
+            background: #0a66c2;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .info {
+            margin-top: 20px;
+            color: #555;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h2>📄 蓝天杯报名表</h2>
+    <p>检测到您在微信中打开，请点击下方按钮，使用默认浏览器打开报名表。</p>
+    <a href="#" id="openBtn" class="btn">🌐 在浏览器中打开</a>
+    <div class="info">
+        如果点击后无反应，请手动复制下方链接到浏览器打开：<br>
+        <span id="urlDisplay" style="color: #0a66c2;"></span>
+    </div>
+
+    <script>
+        // ！！！重要：这里换成你的 GitHub Pages 实际地址 ！！！
+        // 最终格式如：https://你的用户名.github.io/仓库名/baoming.html
+        const targetUrl = "https://你的用户名.github.io/仓库名/baoming.html";
+        
+        document.getElementById('urlDisplay').innerText = targetUrl;
+        
+        function openInBrowser() {
+            window.location.href = targetUrl;
+            setTimeout(() => {
+                alert("如果浏览器未自动打开，请手动复制上面的链接。");
+            }, 500);
+        }
+        
+        document.getElementById('openBtn').onclick = function(e) {
+            e.preventDefault();
+            openInBrowser();
+        };
+    </script>
+</body>
+</html>
